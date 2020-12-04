@@ -3,25 +3,30 @@
 import           Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
-import qualified Data.Text.Read as T
 
+import           Data.Map (Map)
 import qualified Data.Map as M
+import           Data.Set (Set)
 import qualified Data.Set as S
 
-
+parseInput :: IO [Block]
 parseInput = map (parseBlock . splitField) . splitBlock <$> T.readFile "inputs/day04.txt"
 
 -- split whole file into blocks
+splitBlock :: Text -> [Text]
 splitBlock = T.splitOn "\n\n"
 
 -- split one block into fields, throw out empty field 
 -- (there is one at the end of the file)
+splitField :: Text -> [Text]
 splitField = filter (not . T.null) . T.split (\c -> c == '\n' || c == ' ')
 
 -- split fields and store in map
+parseBlock :: [Text] -> Block
 parseBlock = M.fromList . map ((\[a,b] -> (a,b)) . T.splitOn ":")
 
 -- set of required fields
+requiredFields :: Set Text
 requiredFields = S.fromList ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
 
 -- check that a block has all the required fields
@@ -66,4 +71,4 @@ part2 = length . filter validBlock2 . filter validBlock
 
 
 -- so we don't have to write it out everytime:
-type Block = M.Map Text Text
+type Block = Map Text Text
