@@ -35,11 +35,11 @@ part1 = length . filter validBlock
 
 -- everything that is necessary to validate a block in part 2 ... Oo
 validField :: Text -> Text -> Bool
-validField "byr" s = T.length s == 4 && byr >= 1920 && byr <= 2002 where byr = t2i s
-validField "iyr" s = T.length s == 4 && iyr >= 2010 && iyr <= 2020 where iyr = t2i s
-validField "eyr" s = T.length s == 4 && eyr >= 2020 && eyr <= 2030 where eyr = t2i s
-validField "hgt" s | "cm" `T.isSuffixOf` s = hgt >= 150 && hgt <= 193
-                   | "in" `T.isSuffixOf` s = hgt >= 59 && hgt <= 76
+validField "byr" s = T.length s == 4 && t2i s `elem` [1920..2002]
+validField "iyr" s = T.length s == 4 && t2i s `elem` [2010..2020]
+validField "eyr" s = T.length s == 4 && t2i s `elem` [2020..2030]
+validField "hgt" s | "cm" `T.isSuffixOf` s = hgt `elem` [150..193]
+                   | "in" `T.isSuffixOf` s = hgt `elem` [59..76]
                    | otherwise           = False
                    where hgt = t2i (T.dropEnd 2 s)
 validField "hcl" s = T.length s == 7 && s `T.index` 0 == '#' && isHex s
