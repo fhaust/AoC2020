@@ -36,8 +36,11 @@ library
   build-depends:
       base >=4.7 && <5,
       attoparsec,
+      regex-base,
+      regex-tdfa,
       containers,
-      text
+      text,
+      split
   default-language: Haskell2010
 
 -- executable AoC2020-exe
