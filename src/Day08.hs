@@ -39,17 +39,21 @@ flippedyFlop ic = V.ifoldl go [] ic
 
 
 
+part1 = detectLoop . runIntCode
+
+part2 = last . last                    -- get the ics from the nested lists
+      . filter (isRight . detectLoop)  -- remove all machines that run looping code
+      . map runIntCode                 -- run all code versions
+      . flippedyFlop                   -- create all possible code variations
+
+
 
 main = do
 
   Right ic <- parseInput
 
-  let Left (ICS answer1 _) = detectLoop $ runIntCode ic
-      (ICS answer2 _ ) = last . last
-                       . filter (isRight . detectLoop)
-                       . map runIntCode 
-                       . flippedyFlop
-                       $ ic
+  let Left (ICS answer1 _) = part1 ic
+      (ICS answer2 _)      = part2 ic
 
   putStrLn $ "answer1: " ++ show answer1
   putStrLn $ "answer2: " ++ show answer2
