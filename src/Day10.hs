@@ -1,17 +1,9 @@
 
-
-
 module Day10 where
-
 
 import qualified Data.Map as M
 
 import           Data.List
-import           Data.Tree
-import           Data.Graph
-
-
-
 
 part1 sorted = product . M.elems . M.unionsWith (+) . map (flip M.singleton 1) $ zipWith (-) (tail sorted) sorted
 
@@ -20,7 +12,6 @@ part2 sorted = memo M.! 0
     memo = M.fromAscList (go sorted)
     go (x:[]) = [(x, 1)]
     go (x:xs) = (x, sum (map (memo M.!) . filter (<= x+3) . map head . init . tails $ xs)) : go xs
-
 
 main = do
 
