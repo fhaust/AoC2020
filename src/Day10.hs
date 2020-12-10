@@ -11,7 +11,7 @@ part2 sorted = memo M.! 0
   where
     memo = M.fromAscList (go sorted)
     go (x:[]) = [(x, 1)]
-    go (x:xs) = (x, sum (map (memo M.!) . takeWhile (<= x+3) . map head . init . tails $ xs)) : go xs
+    go (x:xs) = (x, sum (map (memo M.!) . takeWhile (<= x+3) $ xs)) : go xs
 
 main = do
 
