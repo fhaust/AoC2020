@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c6ef125382d8e03812ad0ca9679bf3107852aa1cb637ca811c208b4a0737b88f
+-- hash: c2dd36c2c4323faa4c74639f0d91a9749d4185472d7bce2f4055fe797de659c2
 
 name:           AoC2020
 version:        0.1.0.0
@@ -28,42 +28,83 @@ source-repository head
 library
   exposed-modules:
       Day01
+      Day02
+      Day03
+      Day04
+      Day05
+      Day06
+      Day07
+      Day08
+      Day09
+      Day10
+      Day11
+      Day12
+      Day13
+      Day14
+      Day15
+      Day16
+      Day17
+      IntCode
       Lib
   other-modules:
       Paths_AoC2020
   hs-source-dirs:
       src
+  default-extensions: OverloadedStrings
   build-depends:
-      base >=4.7 && <5,
-      attoparsec,
-      regex-base,
-      regex-tdfa,
-      containers,
-      text,
-      split
+      attoparsec
+    , base >=4.7 && <5
+    , containers
+    , data-ordlist
+    , intervals
+    , linear
+    , regex-base
+    , regex-tdfa
+    , split
+    , text
   default-language: Haskell2010
 
--- executable AoC2020-exe
---   main-is: Main.hs
---   other-modules:
---       Paths_AoC2020
---   hs-source-dirs:
---       app
---   ghc-options: -threaded -rtsopts -with-rtsopts=-N
---   build-depends:
---       AoC2020
---     , base >=4.7 && <5
---   default-language: Haskell2010
--- 
--- test-suite AoC2020-test
---   type: exitcode-stdio-1.0
---   main-is: Spec.hs
---   other-modules:
---       Paths_AoC2020
---   hs-source-dirs:
---       test
---   ghc-options: -threaded -rtsopts -with-rtsopts=-N
---   build-depends:
---       AoC2020
---     , base >=4.7 && <5
---   default-language: Haskell2010
+executable AoC2020-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_AoC2020
+  hs-source-dirs:
+      app
+  default-extensions: OverloadedStrings
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      AoC2020
+    , attoparsec
+    , base >=4.7 && <5
+    , containers
+    , data-ordlist
+    , intervals
+    , linear
+    , regex-base
+    , regex-tdfa
+    , split
+    , text
+  default-language: Haskell2010
+
+test-suite AoC2020-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_AoC2020
+  hs-source-dirs:
+      test
+  default-extensions: OverloadedStrings
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      AoC2020
+    , attoparsec
+    , base >=4.7 && <5
+    , containers
+    , data-ordlist
+    , intervals
+    , linear
+    , regex-base
+    , regex-tdfa
+    , split
+    , text
+  default-language: Haskell2010

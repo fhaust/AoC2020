@@ -21,9 +21,18 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-- test
+- attoparsec
+- regex-base
+- regex-tdfa
 - containers
+- text
 - split
+- data-ordlist
+- intervals
+- linear
+
+default-extensions: 
+- OverloadedStrings
 
 library:
   source-dirs: src
